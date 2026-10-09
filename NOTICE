@@ -1,0 +1,11 @@
+SolAttn-AMD
+Copyright 2026 SolAttn-AMD contributors
+
+This project implements the SOL-style routing and approximate correction
+algorithm described by Haopeng Li et al. in arXiv:2607.24027 (2026).
+The initial kernels and independent reference are new implementations.
+No NVIDIA CuTe/CUDA kernel or comfy-kitchen HIP kernel is vendored here.
+
+Related implementations consulted for comparison:
+https://github.com/kijai/ComfyUI-SolAttn_triton
+https://github.com/Comfy-Org/comfy-kitchen
