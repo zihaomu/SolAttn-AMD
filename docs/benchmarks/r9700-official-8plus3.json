@@ -1,0 +1,564 @@
+{
+  "state": "complete",
+  "scope": "diagnostic baseline/candidate/baseline bracket on one GPU; two baseline trials and ONE candidate, not a statistically established speedup or perceptual certification; parent launcher startup and post-generation validation excluded",
+  "workload": {
+    "first": [
+      672,
+      384,
+      8
+    ],
+    "second": [
+      1344,
+      768,
+      3
+    ],
+    "learned_latent_upscale": true,
+    "frames": 243,
+    "fps": 24,
+    "seconds": 10.125,
+    "seed": 2026090901,
+    "refinement_seed": 2026090902,
+    "audio_policy": "exact first pass retained"
+  },
+  "baselines": [
+    {
+      "gpu_uuid": "GPU-b11d6bcf3a61a551",
+      "gpu": "AMD Radeon AI PRO R9700",
+      "torch": "2.12.0+rocm10.0.0",
+      "hip": "7.15.26333",
+      "source_commit": "e09d4bd7a954363fe668712ba2ff4b6d9d16854f",
+      "request_sha256": "1ad176827cfd924f6d289fdc7fbdd6cfe7c71bba45188cef43456b162e27a151",
+      "encode_request_sha256": "44b467a7ce8f8db074ad4cf5446e737a0a6d2fcb33419a2c351059d5486d6b68",
+      "script_sha256": "7531f4983ce7263b5e97b9e520f6bf70cb6972fd5cf8b011e5e8926b99f9a826",
+      "composition_sha256": "ac22c2475833ef8e9c539213c4fa6c84939f1acb93289d31ee7eea34aa5c94c7",
+      "sol_source_sha256": {
+        "src/sol_attn_amd/reference.py": "4ebbdc436781338f9d49f7273aeed3306f150fd97cb71e07903fd838fc840bff",
+        "src/sol_attn_amd/indexed.py": "60a4b60433bbe462b58ec29469541a9f4e8fb358861e0c03f08f9ad77216d32d",
+        "src/sol_attn_amd/attention.py": "25cd74e3c4e67244f3c84d4908e9fb098b6ce09e5a1953cd545ff8f6aec58c36",
+        "src/sol_attn_amd/kernels.py": "9de4c01d68cbed2a7cf508ff7240723bdcc775e4a5399c4d670c614d443ba845",
+        "src/sol_attn_amd/__init__.py": "273e65e2cde07143c3089e17c56094d34302f3f33b21bcf5e18d524425b2683b",
+        "integrations/vdn.py": "e2cd46a9cc139ea068cc10d3b7cc4484e0a7c8c4b98a8f6673106d6533a47ddb"
+      },
+      "beta": null,
+      "base_beta": null,
+      "base_SOL_enabled": false,
+      "phases": [
+        {
+          "name": "base_8",
+          "wall_seconds": 100.96767486503813
+        },
+        {
+          "name": "refine_3",
+          "wall_seconds": 169.53254590800498
+        }
+      ],
+      "adapters": [],
+      "gates": {
+        "audio_cosine": 0.99,
+        "audio_relative_l2": 0.1,
+        "latent_video_relative_l2": 0.1
+      },
+      "perceptual_quality_gate": "not evaluated",
+      "encoder_process_wall_seconds": 8.758153151953593,
+      "video_worker_wall_seconds": 333.37235912901815,
+      "full_request_wall_seconds": 342.1311009370256,
+      "frozen_source_unchanged": true,
+      "name": "official-baseline-01",
+      "generation_and_av_validated": true,
+      "original_receipt_state": "failed",
+      "original_receipt_error": "FileNotFoundError(2, 'No such file or directory')",
+      "validation_receipt_sha256": "d1c1e13bff8e1ab882c99ac6d3067e5db172a45a41bad80a2c5015cc20e6b1d5",
+      "av_receipt_sha256": "e1bb37d513e5d72c071d8efe1f79bb7f18f9a342c9fe192c31294250ee9e1bdd",
+      "mp4_sha256": "afafa4cd008e43ce9bbcfead8f9f1d16c4bfb5a31129cfac85bc6badb33e8bd7",
+      "av_shape_gate": true,
+      "av_duration_gate": true,
+      "full_av_decode_pass": true,
+      "engine_phase_seconds": {
+        "load_seconds": 2.9978767710272223,
+        "sample_seconds": 273.2968518829439,
+        "vae_load_seconds": 2.3635209960630164,
+        "video_decode_seconds": 48.7242043109145,
+        "audio_load_decode_seconds": 1.5409654390532523,
+        "decode_save_seconds": 55.50168340804521,
+        "work_seconds": 333.3705303160241
+      }
+    },
+    {
+      "gpu_uuid": "GPU-b11d6bcf3a61a551",
+      "gpu": "AMD Radeon AI PRO R9700",
+      "torch": "2.12.0+rocm10.0.0",
+      "hip": "7.15.26333",
+      "source_commit": "e09d4bd7a954363fe668712ba2ff4b6d9d16854f",
+      "request_sha256": "1ad176827cfd924f6d289fdc7fbdd6cfe7c71bba45188cef43456b162e27a151",
+      "encode_request_sha256": "44b467a7ce8f8db074ad4cf5446e737a0a6d2fcb33419a2c351059d5486d6b68",
+      "script_sha256": "ed460239d926d7be9cc738bb3f7003c4cfca5a24693825aa62e00318e12ec38c",
+      "composition_sha256": "ac22c2475833ef8e9c539213c4fa6c84939f1acb93289d31ee7eea34aa5c94c7",
+      "sol_source_sha256": {
+        "src/sol_attn_amd/reference.py": "4ebbdc436781338f9d49f7273aeed3306f150fd97cb71e07903fd838fc840bff",
+        "src/sol_attn_amd/indexed.py": "5e00986ff17f4053a843b657bc18038a20a6a83db2a71f2d2ebde57067468ccf",
+        "src/sol_attn_amd/attention.py": "25cd74e3c4e67244f3c84d4908e9fb098b6ce09e5a1953cd545ff8f6aec58c36",
+        "src/sol_attn_amd/kernels.py": "9de4c01d68cbed2a7cf508ff7240723bdcc775e4a5399c4d670c614d443ba845",
+        "src/sol_attn_amd/__init__.py": "273e65e2cde07143c3089e17c56094d34302f3f33b21bcf5e18d524425b2683b",
+        "integrations/vdn.py": "e2cd46a9cc139ea068cc10d3b7cc4484e0a7c8c4b98a8f6673106d6533a47ddb"
+      },
+      "beta": null,
+      "base_beta": null,
+      "base_SOL_enabled": false,
+      "phases": [
+        {
+          "name": "base_8",
+          "wall_seconds": 100.8678028449649
+        },
+        {
+          "name": "refine_3",
+          "wall_seconds": 169.31928151799366
+        }
+      ],
+      "adapters": [],
+      "gates": {
+        "audio_cosine": 0.99,
+        "audio_relative_l2": 0.1,
+        "latent_video_relative_l2": 0.1
+      },
+      "perceptual_quality_gate": "not evaluated",
+      "encoder_process_wall_seconds": 8.76616099209059,
+      "video_worker_wall_seconds": 332.9665317349136,
+      "full_request_wall_seconds": 341.7371157290181,
+      "conditioning_equal_reference": true,
+      "frozen_source_unchanged": true,
+      "sol_source_unchanged": true,
+      "checks": {
+        "latent_video": {
+          "shape": [
+            1,
+            24,
+            72,
+            48,
+            84
+          ],
+          "exact": true,
+          "finite": true,
+          "max_abs": 0.0,
+          "relative_l2": 0.0,
+          "cosine": 1.0003818273544312
+        },
+        "latent_audio": {
+          "shape": [
+            2,
+            32,
+            405
+          ],
+          "exact": true,
+          "finite": true,
+          "max_abs": 0.0,
+          "relative_l2": 0.0,
+          "cosine": 1.0
+        },
+        "audio.npy": {
+          "shape": [
+            2,
+            324000
+          ],
+          "dtype": "float32",
+          "finite": true,
+          "exact": true,
+          "max_abs": 0.0,
+          "relative_l2": 0.0,
+          "cosine": 1.0,
+          "sha256": "45273e57903e248251c5f8b71b2fe6e2a4d4978e583e6b4dfda07c46bd19421a"
+        },
+        "audio_decoder_input.npy": {
+          "shape": [
+            2,
+            32,
+            405
+          ],
+          "dtype": "float32",
+          "finite": true,
+          "exact": true,
+          "max_abs": 0.0,
+          "relative_l2": 0.0,
+          "cosine": 1.0,
+          "sha256": "cf3df7743827e929d119701bd8b7cdcaf06ce95bd7a83fa199c7856b2751f129"
+        },
+        "rgb.npy": {
+          "shape": [
+            243,
+            768,
+            1344,
+            3
+          ],
+          "dtype": "uint8",
+          "finite": true,
+          "exact": true,
+          "max_abs": 0.0,
+          "relative_l2": 0.0,
+          "cosine": 1.0,
+          "sha256": "ecfd4533a5bd7ec705adb063366172baaa2ec2e34c694a76d3171b382247dc75",
+          "psnr_db": 348.13080360867906
+        }
+      },
+      "numeric_media_gate": true,
+      "exact_media_gate": true,
+      "artifact_summary": {
+        "latent_video": {
+          "shape": [
+            1,
+            24,
+            72,
+            48,
+            84
+          ],
+          "finite": true
+        },
+        "latent_audio": {
+          "shape": [
+            2,
+            32,
+            405
+          ],
+          "finite": true
+        },
+        "rgb": {
+          "shape": [
+            243,
+            768,
+            1344,
+            3
+          ],
+          "unique_frames": 243,
+          "minimum": 0,
+          "maximum": 255
+        },
+        "audio.npy": {
+          "shape": [
+            2,
+            324000
+          ],
+          "finite": true,
+          "rms": 0.03432774553472425,
+          "max_abs": 0.1910717487335205
+        },
+        "audio_decoder_input.npy": {
+          "shape": [
+            2,
+            32,
+            405
+          ],
+          "finite": true,
+          "rms": 1.16600019709679,
+          "max_abs": 4.38320255279541
+        },
+        "artifact_sanity_gate": true
+      },
+      "name": "official-baseline-02",
+      "generation_and_av_validated": true,
+      "original_receipt_state": "generation_complete_av_pending",
+      "original_receipt_error": null,
+      "validation_receipt_sha256": "4b4da72f502b77d96995929a2c0e23741a0bf9df43ec43a1daa58ca300b6c222",
+      "av_receipt_sha256": "a6c4144e3e19dedb5acd139185b29d2673d32364a17bcd43d2db0bfe5b1b1616",
+      "mp4_sha256": "afafa4cd008e43ce9bbcfead8f9f1d16c4bfb5a31129cfac85bc6badb33e8bd7",
+      "av_shape_gate": true,
+      "av_duration_gate": true,
+      "full_av_decode_pass": true,
+      "engine_phase_seconds": {
+        "load_seconds": 3.0662420100998133,
+        "sample_seconds": 272.9330250378698,
+        "vae_load_seconds": 2.2940675190184265,
+        "video_decode_seconds": 48.67011416400783,
+        "audio_load_decode_seconds": 1.550810253014788,
+        "decode_save_seconds": 55.41326740209479,
+        "work_seconds": 332.9647392039187
+      },
+      "fp64_latent_verification": {
+        "state": "complete",
+        "precision": "FP64 CPU dot/norm/subtraction; independent post-generation check",
+        "reference": "official-baseline-01",
+        "checks": {
+          "video": {
+            "shape": [
+              1,
+              24,
+              72,
+              48,
+              84
+            ],
+            "finite": true,
+            "exact": true,
+            "max_abs": 0.0,
+            "relative_l2": 0.0,
+            "cosine": 0.9999999999996075
+          },
+          "audio": {
+            "shape": [
+              2,
+              32,
+              405
+            ],
+            "finite": true,
+            "exact": true,
+            "max_abs": 0.0,
+            "relative_l2": 0.0,
+            "cosine": 0.9999999999999901
+          }
+        },
+        "script_sha256": "d141f5078e7fe5a11fde22b5190fa77ed6302b8ebe42c3ad067ea240e71b2699"
+      },
+      "fp64_latent_receipt_sha256": "10baaf24c4d984972532a4d19483288af3bcc09ce39156cafc69b5c65ae07962"
+    }
+  ],
+  "candidate": {
+    "gpu_uuid": "GPU-b11d6bcf3a61a551",
+    "gpu": "AMD Radeon AI PRO R9700",
+    "torch": "2.12.0+rocm10.0.0",
+    "hip": "7.15.26333",
+    "source_commit": "e09d4bd7a954363fe668712ba2ff4b6d9d16854f",
+    "request_sha256": "1ad176827cfd924f6d289fdc7fbdd6cfe7c71bba45188cef43456b162e27a151",
+    "encode_request_sha256": "44b467a7ce8f8db074ad4cf5446e737a0a6d2fcb33419a2c351059d5486d6b68",
+    "script_sha256": "ed460239d926d7be9cc738bb3f7003c4cfca5a24693825aa62e00318e12ec38c",
+    "composition_sha256": "ac22c2475833ef8e9c539213c4fa6c84939f1acb93289d31ee7eea34aa5c94c7",
+    "sol_source_sha256": {
+      "src/sol_attn_amd/reference.py": "4ebbdc436781338f9d49f7273aeed3306f150fd97cb71e07903fd838fc840bff",
+      "src/sol_attn_amd/indexed.py": "5e00986ff17f4053a843b657bc18038a20a6a83db2a71f2d2ebde57067468ccf",
+      "src/sol_attn_amd/attention.py": "25cd74e3c4e67244f3c84d4908e9fb098b6ce09e5a1953cd545ff8f6aec58c36",
+      "src/sol_attn_amd/kernels.py": "9de4c01d68cbed2a7cf508ff7240723bdcc775e4a5399c4d670c614d443ba845",
+      "src/sol_attn_amd/__init__.py": "273e65e2cde07143c3089e17c56094d34302f3f33b21bcf5e18d524425b2683b",
+      "integrations/vdn.py": "e2cd46a9cc139ea068cc10d3b7cc4484e0a7c8c4b98a8f6673106d6533a47ddb"
+    },
+    "beta": 0.0,
+    "base_beta": null,
+    "base_SOL_enabled": false,
+    "phases": [
+      {
+        "name": "base_8",
+        "wall_seconds": 101.07511951890774
+      },
+      {
+        "name": "refine_3",
+        "wall_seconds": 157.73941877798643
+      }
+    ],
+    "adapters": [
+      {
+        "calls": 600,
+        "setup_seconds": 1.3947166070574895,
+        "beta": 0.0,
+        "base_beta": 0.0,
+        "base_enabled": false
+      }
+    ],
+    "gates": {
+      "audio_cosine": 0.99,
+      "audio_relative_l2": 0.1,
+      "latent_video_relative_l2": 0.1
+    },
+    "perceptual_quality_gate": "not evaluated",
+    "encoder_process_wall_seconds": 8.547817243961617,
+    "video_worker_wall_seconds": 321.9527032179758,
+    "full_request_wall_seconds": 330.5050463869702,
+    "conditioning_equal_reference": true,
+    "frozen_source_unchanged": true,
+    "sol_source_unchanged": true,
+    "checks": {
+      "latent_video": {
+        "shape": [
+          1,
+          24,
+          72,
+          48,
+          84
+        ],
+        "exact": false,
+        "finite": true,
+        "max_abs": 2.837742567062378,
+        "relative_l2": 0.08672400563955307,
+        "cosine": 0.9966159462928772
+      },
+      "latent_audio": {
+        "shape": [
+          2,
+          32,
+          405
+        ],
+        "exact": true,
+        "finite": true,
+        "max_abs": 0.0,
+        "relative_l2": 0.0,
+        "cosine": 1.0
+      },
+      "audio.npy": {
+        "shape": [
+          2,
+          324000
+        ],
+        "dtype": "float32",
+        "finite": true,
+        "exact": true,
+        "max_abs": 0.0,
+        "relative_l2": 0.0,
+        "cosine": 1.0,
+        "sha256": "45273e57903e248251c5f8b71b2fe6e2a4d4978e583e6b4dfda07c46bd19421a"
+      },
+      "audio_decoder_input.npy": {
+        "shape": [
+          2,
+          32,
+          405
+        ],
+        "dtype": "float32",
+        "finite": true,
+        "exact": true,
+        "max_abs": 0.0,
+        "relative_l2": 0.0,
+        "cosine": 1.0,
+        "sha256": "cf3df7743827e929d119701bd8b7cdcaf06ce95bd7a83fa199c7856b2751f129"
+      },
+      "rgb.npy": {
+        "shape": [
+          243,
+          768,
+          1344,
+          3
+        ],
+        "dtype": "uint8",
+        "finite": true,
+        "exact": false,
+        "max_abs": 255.0,
+        "relative_l2": 0.05559041342460587,
+        "cosine": 0.998457460041709,
+        "sha256": "22b3f2fa9aab8635843e264f91f5a1029b670a000f4435599a30bf3642b39a16",
+        "psnr_db": 31.871703865668405
+      }
+    },
+    "numeric_media_gate": true,
+    "exact_media_gate": false,
+    "artifact_summary": {
+      "latent_video": {
+        "shape": [
+          1,
+          24,
+          72,
+          48,
+          84
+        ],
+        "finite": true
+      },
+      "latent_audio": {
+        "shape": [
+          2,
+          32,
+          405
+        ],
+        "finite": true
+      },
+      "rgb": {
+        "shape": [
+          243,
+          768,
+          1344,
+          3
+        ],
+        "unique_frames": 243,
+        "minimum": 0,
+        "maximum": 255
+      },
+      "audio.npy": {
+        "shape": [
+          2,
+          324000
+        ],
+        "finite": true,
+        "rms": 0.03432774553472425,
+        "max_abs": 0.1910717487335205
+      },
+      "audio_decoder_input.npy": {
+        "shape": [
+          2,
+          32,
+          405
+        ],
+        "finite": true,
+        "rms": 1.16600019709679,
+        "max_abs": 4.38320255279541
+      },
+      "artifact_sanity_gate": true
+    },
+    "name": "official-sol-beta0-00",
+    "generation_and_av_validated": true,
+    "original_receipt_state": "generation_complete_av_pending",
+    "original_receipt_error": null,
+    "validation_receipt_sha256": "71f29f9b236acf4b3d13f3c3964d2ed2b9ee407951b5187aa3e2e971ccc4d0e3",
+    "av_receipt_sha256": "4dc603c9ad0d55bd21391e1a272ee311697843d2f9ebde685cc8c6d6fae46bd1",
+    "mp4_sha256": "cb30b15262600bd54977a172f76ad3ab5a334e5b945409cbf4f85dc061c652f5",
+    "av_shape_gate": true,
+    "av_duration_gate": true,
+    "full_av_decode_pass": true,
+    "engine_phase_seconds": {
+      "load_seconds": 3.0481349079636857,
+      "sample_seconds": 261.5812444089679,
+      "vae_load_seconds": 2.32710139604751,
+      "video_decode_seconds": 48.81771087402012,
+      "audio_load_decode_seconds": 1.5970904290443286,
+      "decode_save_seconds": 55.749541233992204,
+      "work_seconds": 321.9508857399924
+    },
+    "fp64_latent_verification": {
+      "state": "complete",
+      "precision": "FP64 CPU dot/norm/subtraction; independent post-generation check",
+      "reference": "official-baseline-01",
+      "checks": {
+        "video": {
+          "shape": [
+            1,
+            24,
+            72,
+            48,
+            84
+          ],
+          "finite": true,
+          "exact": false,
+          "max_abs": 2.8377425968647003,
+          "relative_l2": 0.08672831389778414,
+          "cosine": 0.9962359102351561
+        },
+        "audio": {
+          "shape": [
+            2,
+            32,
+            405
+          ],
+          "finite": true,
+          "exact": true,
+          "max_abs": 0.0,
+          "relative_l2": 0.0,
+          "cosine": 0.9999999999999901
+        }
+      },
+      "script_sha256": "d141f5078e7fe5a11fde22b5190fa77ed6302b8ebe42c3ad067ea240e71b2699"
+    },
+    "fp64_latent_receipt_sha256": "a70a7a35a565c4e31e2ab5702a8a815e60fdcb839b008ac267cdb57dceb41510"
+  },
+  "comparison": {
+    "baseline_full_samples_seconds": [
+      342.1311009370256,
+      341.7371157290181
+    ],
+    "baseline_full_median_seconds": 341.93410833302187,
+    "baseline_full_range_seconds": 0.393985208007507,
+    "candidate_full_seconds": 330.5050463869702,
+    "saved_seconds": 11.429061946051661,
+    "time_reduction_percent": 3.342474958631647,
+    "speedup": 1.0345805973947824,
+    "baseline_worker_samples_seconds": [
+      333.37235912901815,
+      332.9665317349136
+    ],
+    "candidate_worker_seconds": 321.9527032179758
+  },
+  "conclusions": {
+    "production_enabled": false,
+    "dense_equivalence": false,
+    "multi_prompt_quality_gate_passed": false,
+    "original_Triton_and_FreeVideo_sources_edited": false
+  }
+}

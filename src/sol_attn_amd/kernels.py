@@ -99,13 +99,14 @@ def _dense(Q, K, V, O, NQ: tl.constexpr, NK: tl.constexpr, H: tl.constexpr,
 
 
 @triton.jit
-def _sol(Q, K, V, KC, VC, THRESHOLD, O, COUNTS,
+def _sol(Q, K, V, KC, VC, THRESHOLD, O, COUNTS, PROTECTION,
          NQ: tl.constexpr, NK: tl.constexpr, H: tl.constexpr, D: tl.constexpr,
          Q0: tl.constexpr, Q1: tl.constexpr, Q2: tl.constexpr,
          K0: tl.constexpr, K1: tl.constexpr, K2: tl.constexpr,
          V0: tl.constexpr, V1: tl.constexpr, V2: tl.constexpr,
          SCALE: tl.constexpr, LOCAL: tl.constexpr, KV_SINK: tl.constexpr,
          Q_SINK: tl.constexpr, FORCE: tl.constexpr, STATS: tl.constexpr,
+         HAS_PROTECTION: tl.constexpr,
          BLOCK: tl.constexpr, GROUP: tl.constexpr):
     qb, bh = tl.program_id(0), tl.program_id(1)
     batch, head = bh // H, bh % H
@@ -136,6 +137,10 @@ def _sol(Q, K, V, KC, VC, THRESHOLD, O, COUNTS,
             selected = tl.full((GROUP,), True, tl.int1)
         selected = (selected | (tl.abs(blocks - qb) <= LOCAL)
                     | (blocks < KV_SINK) | (qb < Q_SINK)) & (blocks < nkb)
+        if HAS_PROTECTION:
+            protected = tl.load(PROTECTION + (batch * nqb + qb) * nkb + blocks,
+                                blocks < nkb, other=0)
+            selected = selected | protected
         # local_blocks=0 deliberately protects the same-index block only.
         approximate = (blocks < nkb) & ~selected
         approximate_scores = tl.where(approximate[None, :], scores, -float("inf"))
@@ -195,7 +200,7 @@ def launch_dense(q, k, v, scale):
     return out
 
 
-def launch_sol(q, k, v, scale, beta, local, kv_sink, q_sink, stats):
+def launch_sol(q, k, v, scale, beta, local, kv_sink, q_sink, stats, protection=None):
     b, nq, h, d = q.shape
     nqb = triton.cdiv(nq, BLOCK)
     kc, vc = _pooled(k, torch.bfloat16), _pooled(v, torch.bfloat16)
@@ -211,8 +216,10 @@ def launch_sol(q, k, v, scale, beta, local, kv_sink, q_sink, stats):
     out = torch.empty(q.shape, device=q.device, dtype=q.dtype)
     counts = torch.empty((b, nqb, h), device=q.device, dtype=torch.int32)
     _sol[(nqb, b * h)](
-        q, k, v, kc, vc, threshold, out, counts, nq, k.shape[1], h, d,
+        q, k, v, kc, vc, threshold, out, counts,
+        counts if protection is None else protection, nq, k.shape[1], h, d,
         *q.stride()[:3], *k.stride()[:3], *v.stride()[:3], scale, local,
         triton.cdiv(kv_sink, BLOCK), triton.cdiv(q_sink, BLOCK), force, stats,
+        protection is not None,
         BLOCK, GROUP, num_warps=4, num_stages=1)
     return out, counts

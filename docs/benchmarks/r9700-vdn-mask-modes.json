@@ -1,0 +1,128 @@
+{
+  "state": "complete",
+  "gpu_uuid": "GPU-b11d6bcf3a61a551",
+  "script_sha256": "6f950f9e1b7f63ff6ab9d9c3f54499ebfa61e335f568bf03476a4366edf335e6",
+  "scope": "synthetic independent per-token frame/window/anchor mask semantics, not quality/performance",
+  "cases": [
+    {
+      "anchor": "none",
+      "every_query_mask_equal": true,
+      "dense_vs_fp32": {
+        "finite": true,
+        "max_abs": 0.002074718475341797,
+        "relative_l2": 0.002167828381061554,
+        "cosine": 0.9999971985816956
+      },
+      "sparse_oracle": [
+        {
+          "finite": true,
+          "max_abs": 0.0020313262939453125,
+          "relative_l2": 0.0021567773073911667,
+          "cosine": 0.9999996423721313
+        },
+        {
+          "finite": true,
+          "max_abs": 0.0015859007835388184,
+          "relative_l2": 0.002176286419853568,
+          "cosine": 0.9999992847442627
+        },
+        {
+          "finite": true,
+          "max_abs": 0.00207442045211792,
+          "relative_l2": 0.002161890035495162,
+          "cosine": 0.9999994039535522
+        }
+      ]
+    },
+    {
+      "anchor": "rows",
+      "every_query_mask_equal": true,
+      "dense_vs_fp32": {
+        "finite": true,
+        "max_abs": 0.0015854239463806152,
+        "relative_l2": 0.0021729343570768833,
+        "cosine": 0.9999984502792358
+      },
+      "sparse_oracle": [
+        {
+          "finite": true,
+          "max_abs": 0.0012877881526947021,
+          "relative_l2": 0.0021430945489555597,
+          "cosine": 0.9999998807907104
+        },
+        {
+          "finite": true,
+          "max_abs": 0.0015859007835388184,
+          "relative_l2": 0.002176286419853568,
+          "cosine": 0.9999992847442627
+        }
+      ]
+    },
+    {
+      "anchor": "columns",
+      "every_query_mask_equal": true,
+      "dense_vs_fp32": {
+        "finite": true,
+        "max_abs": 0.0020311474800109863,
+        "relative_l2": 0.0021843959111720324,
+        "cosine": 0.9999985694885254
+      },
+      "sparse_oracle": [
+        {
+          "finite": true,
+          "max_abs": 0.0020311474800109863,
+          "relative_l2": 0.002184037584811449,
+          "cosine": 0.9999996423721313
+        },
+        {
+          "finite": true,
+          "max_abs": 0.0011272430419921875,
+          "relative_l2": 0.0022059523034840822,
+          "cosine": 1.000000238418579
+        },
+        {
+          "finite": true,
+          "max_abs": 0.001835644245147705,
+          "relative_l2": 0.0021937263663858175,
+          "cosine": 1.0000004768371582
+        },
+        {
+          "finite": true,
+          "max_abs": 0.0016393661499023438,
+          "relative_l2": 0.00215620594099164,
+          "cosine": 0.9999994039535522
+        }
+      ]
+    },
+    {
+      "anchor": "both",
+      "every_query_mask_equal": true,
+      "dense_vs_fp32": {
+        "finite": true,
+        "max_abs": 0.0018358826637268066,
+        "relative_l2": 0.0021964539773762226,
+        "cosine": 0.9999983310699463
+      },
+      "sparse_oracle": [
+        {
+          "finite": true,
+          "max_abs": 0.001766979694366455,
+          "relative_l2": 0.0022058794274926186,
+          "cosine": 0.9999993443489075
+        },
+        {
+          "finite": true,
+          "max_abs": 0.0011272430419921875,
+          "relative_l2": 0.0022059523034840822,
+          "cosine": 1.000000238418579
+        },
+        {
+          "finite": true,
+          "max_abs": 0.001835644245147705,
+          "relative_l2": 0.0021937263663858175,
+          "cosine": 1.0000004768371582
+        }
+      ]
+    }
+  ]
+}

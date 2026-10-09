@@ -4,10 +4,13 @@ Experimental, standalone **BF16 SOL-style attention kernels for AMD ROCm**.
 The initial target is Radeon AI PRO R9700 (`gfx1201`). This project does not
 require the Triton `uint8 dot` draft PR, ComfyUI, FreeVideo or model weights.
 
-Status: initial BF16 implementation validated on one R9700: **30 tests passed**,
-plus wheel build/import and CPU-only reference checks. Initial all-in synthetic
-benchmarks and limitations are retained in [the validation report](docs/VALIDATION.md).
-No model-level acceleration or video/audio-quality claim is made. In particular,
+Status: BF16 implementation and explicit indexed-window mask support validated
+on R9700: **41 tests passed** plus four independent VDN anchor-mask checks.
+Real QKV and the native 8+3-step case are evaluated in
+[the validation report](docs/VALIDATION.md). Initial paired generation shows
+341.93 → 330.51 s (**3.34%**) with enhancement-only beta 0, but video-latent error is 8.67%:
+this is diagnostic evidence, not production-quality or stable-speedup certification.
+In particular,
 unstructured random inputs have large approximation error; see the report.
 
 ## Install and run
@@ -49,7 +52,8 @@ print(stats.density())  # explicit CPU/GPU synchronization for diagnostics
 
 - Inference only; BF16 inputs/output, head dimension 64 or 128, noncausal BTHD.
   Unequal Q/K lengths and positive-strided tensors with contiguous D are allowed.
-  Inputs must be finite. No semantic mask, dropout, backward or KV cache API.
+  Inputs must be finite. The BTHD API has no semantic mask argument; use the
+  explicit indexed-window API below. No dropout, backward or KV cache API.
 - Physical blocks contain 64 tokens; the outer loop scans groups of 16 centroids.
 - K/V block means are rounded to BF16. Query means and key moments are FP32.
   Thresholds use the **diagonal pooled-key covariance estimator**, paper Eq. 15:
@@ -86,10 +90,26 @@ speedup claims require separately measured real activation and end-to-end gates.
 
 ## Scope and next steps
 
-See [ROADMAP.md](ROADMAP.md). The official FreeVideo 672×384/8-step → latent
-upscale → 1344×768/3-step workload remains the intended later integration case.
-Its VDN window/anchor/global semantics must be implemented explicitly before
-integration; replacing its hybrid architecture with dense SOL is not permitted.
+`IndexedPlan.create(rows, keys, sequence_length, protected_ranges=...)` accepts
+CPU int64 `[windows, queries]` / `[windows, allowed_keys]` matrices, strictly
+increasing per window. Every query within one window must have the same allowed
+key set. Transfer the validated static plan once with `.to(q.device)` and call
+`sol_attention_indexed(q, k, v, plan)` with BF16 NHD activations. Output is
+`[windows, queries, heads, D]`; scatter is the caller's responsibility.
+
+Only allowed keys enter K/V pooling. Conditioning/anchor ranges and the local
+original-index neighborhood force intersecting packed blocks exact. Protection
+is not a substitute for a correct allowed-key set. Plan tensors are immutable
+by convention: do not edit indices after validation. Static plan setup/transfer
+must be disclosed separately from repeated all-in operator timings.
+
+`integrations/` contains opt-in **research-only** VDN experiments outside the
+installed kernel package. They retain exact global/anchor-row queries and the
+learned linear branch, override only allowed window-softmax sets, and restore
+process-local hooks. They never edit FreeVideo/Triton sources or defaults.
+The target is the official 672×384/8-step → learned latent upscale →
+1344×768/3-step case. See [ROADMAP.md](ROADMAP.md); no approximation is promoted
+to production by these tools.
 
 ## References
 

@@ -1,0 +1,617 @@
+{
+  "state": "complete",
+  "scope": "warm real first-head-group operator, all-in gathers/pooling/threshold/attention/scatter; cached static metadata setup excluded and separately recorded; not model quality evidence",
+  "gates": {
+    "operator_relative_l2": 0.1,
+    "operator_cosine": 0.99,
+    "oracle_relative_l2": 0.012
+  },
+  "cases": [
+    {
+      "canvas": [
+        672,
+        384
+      ],
+      "shape": [
+        19003,
+        16,
+        128
+      ],
+      "layout": {
+        "seq_len": 19003,
+        "video_start": 859,
+        "video_end": 19003,
+        "num_frames": 72,
+        "tokens_per_frame": 252
+      },
+      "anchor": "both",
+      "activation_sha256": "03a511d8a9fee3a08d14bd572a6358b02cb9926a6a04551657fb501dfbb16581",
+      "mask_all_queries_equal": true,
+      "metadata_setup_seconds": 0.11063328001182526,
+      "candidates": {
+        "-inf": {
+          "vs_dense": {
+            "finite": true,
+            "max_abs": 0.03125,
+            "relative_l2": 3.9940969145391136e-05,
+            "cosine": 1.0000001192092896,
+            "worst_head_relative_l2": 5.270493420539424e-05,
+            "global_queries_exact": true,
+            "window_only": {
+              "finite": true,
+              "max_abs": 0.03125,
+              "relative_l2": 4.1316023271065205e-05,
+              "cosine": 0.9999999403953552
+            }
+          },
+          "oracle_checks": [
+            {
+              "window": 0,
+              "heads": [
+                0,
+                1,
+                15
+              ],
+              "query_rows": 176,
+              "error": {
+                "finite": true,
+                "max_abs": 0.014347076416015625,
+                "relative_l2": 0.001849448774009943,
+                "cosine": 1.0000008344650269
+              },
+              "oracle_density": 1.0
+            },
+            {
+              "window": 3,
+              "heads": [
+                0,
+                1,
+                15
+              ],
+              "query_rows": 172,
+              "error": {
+                "finite": true,
+                "max_abs": 0.018954753875732422,
+                "relative_l2": 0.0017968411557376385,
+                "cosine": 0.9999996423721313
+              },
+              "oracle_density": 1.0
+            },
+            {
+              "window": 6,
+              "heads": [
+                0,
+                1,
+                15
+              ],
+              "query_rows": 188,
+              "error": {
+                "finite": true,
+                "max_abs": 0.014192581176757812,
+                "relative_l2": 0.0018341907998546958,
+                "cosine": 0.9999997615814209
+              },
+              "oracle_density": 1.0
+            }
+          ],
+          "oracle_pass": true,
+          "window_block_density": 1.0,
+          "operator_error_gate": true,
+          "speedup": 0.8672929915794388
+        },
+        "0.0": {
+          "vs_dense": {
+            "finite": true,
+            "max_abs": 1.162109375,
+            "relative_l2": 0.028684057295322418,
+            "cosine": 0.9995999336242676,
+            "worst_head_relative_l2": 0.10754679143428802,
+            "global_queries_exact": true,
+            "window_only": {
+              "finite": true,
+              "max_abs": 1.162109375,
+              "relative_l2": 0.02967156656086445,
+              "cosine": 0.9995726346969604
+            }
+          },
+          "oracle_checks": [
+            {
+              "window": 0,
+              "heads": [
+                0,
+                9,
+                15
+              ],
+              "query_rows": 176,
+              "error": {
+                "finite": true,
+                "max_abs": 0.01557302474975586,
+                "relative_l2": 0.001711411401629448,
+                "cosine": 1.0000016689300537
+              },
+              "oracle_density": 0.8830409049987793
+            },
+            {
+              "window": 3,
+              "heads": [
+                0,
+                9,
+                15
+              ],
+              "query_rows": 172,
+              "error": {
+                "finite": true,
+                "max_abs": 0.015554428100585938,
+                "relative_l2": 0.0016978620551526546,
+                "cosine": 1.0000011920928955
+              },
+              "oracle_density": 0.8230452537536621
+            },
+            {
+              "window": 6,
+              "heads": [
+                0,
+                9,
+                15
+              ],
+              "query_rows": 188,
+              "error": {
+                "finite": true,
+                "max_abs": 0.02931976318359375,
+                "relative_l2": 0.0017138696275651455,
+                "cosine": 1.000001072883606
+              },
+              "oracle_density": 0.9283950924873352
+            }
+          ],
+          "oracle_pass": true,
+          "window_block_density": 0.8270819924604634,
+          "operator_error_gate": true,
+          "speedup": 0.9300028837397134
+        },
+        "1.0": {
+          "vs_dense": {
+            "finite": true,
+            "max_abs": 2.28125,
+            "relative_l2": 0.07558858394622803,
+            "cosine": 0.997267484664917,
+            "worst_head_relative_l2": 0.27196571230888367,
+            "global_queries_exact": true,
+            "window_only": {
+              "finite": true,
+              "max_abs": 2.28125,
+              "relative_l2": 0.0781908854842186,
+              "cosine": 0.9970850944519043
+            }
+          },
+          "oracle_checks": [
+            {
+              "window": 0,
+              "heads": [
+                0,
+                9,
+                15
+              ],
+              "query_rows": 176,
+              "error": {
+                "finite": true,
+                "max_abs": 0.014873981475830078,
+                "relative_l2": 0.001700771157629788,
+                "cosine": 1.000001311302185
+              },
+              "oracle_density": 0.7777777314186096
+            },
+            {
+              "window": 3,
+              "heads": [
+                0,
+                9,
+                15
+              ],
+              "query_rows": 172,
+              "error": {
+                "finite": true,
+                "max_abs": 0.015172481536865234,
+                "relative_l2": 0.0016856727888807654,
+                "cosine": 1.0000015497207642
+              },
+              "oracle_density": 0.6652949452400208
+            },
+            {
+              "window": 6,
+              "heads": [
+                0,
+                9,
+                15
+              ],
+              "query_rows": 188,
+              "error": {
+                "finite": true,
+                "max_abs": 0.017518043518066406,
+                "relative_l2": 0.0016963506350293756,
+                "cosine": 1.0000004768371582
+              },
+              "oracle_density": 0.8543209433555603
+            }
+          ],
+          "oracle_pass": true,
+          "window_block_density": 0.6559626700993012,
+          "operator_error_gate": true,
+          "speedup": 1.0305834694443154
+        }
+      },
+      "timings": {
+        "baseline": {
+          "samples_ms": [
+            13.700679779052734,
+            13.990442276000977,
+            13.945191383361816,
+            13.932761192321777,
+            13.97240161895752,
+            14.017281532287598,
+            13.79784107208252,
+            14.117914199829102,
+            13.99836254119873
+          ],
+          "median_ms": 13.97240161895752,
+          "cv": 0.00835708487982435
+        },
+        "-inf": {
+          "samples_ms": [
+            15.63660717010498,
+            15.14752197265625,
+            16.11035919189453,
+            16.110599517822266,
+            16.0710506439209,
+            15.802577018737793,
+            16.147531509399414,
+            16.15511131286621,
+            16.16859245300293
+          ],
+          "median_ms": 16.11035919189453,
+          "cv": 0.02044621499920951
+        },
+        "0.0": {
+          "samples_ms": [
+            14.672167778015137,
+            14.443785667419434,
+            15.571465492248535,
+            15.087961196899414,
+            15.116002082824707,
+            15.008081436157227,
+            15.133252143859863,
+            14.915679931640625,
+            15.024041175842285
+          ],
+          "median_ms": 15.024041175842285,
+          "cv": 0.01975607299411362
+        },
+        "1.0": {
+          "samples_ms": [
+            13.028573989868164,
+            13.315095901489258,
+            13.753939628601074,
+            13.773019790649414,
+            13.531888008117676,
+            13.536018371582031,
+            13.748629570007324,
+            13.68120002746582,
+            13.557758331298828
+          ],
+          "median_ms": 13.557758331298828,
+          "cv": 0.016968250974923205
+        }
+      }
+    },
+    {
+      "canvas": [
+        1344,
+        768
+      ],
+      "shape": [
+        73435,
+        16,
+        128
+      ],
+      "layout": {
+        "seq_len": 73435,
+        "video_start": 859,
+        "video_end": 73435,
+        "num_frames": 72,
+        "tokens_per_frame": 1008
+      },
+      "anchor": "both",
+      "activation_sha256": "2c9778eabdce41fd19b81569050831be3411e4b6be8d0da4cb713610dda3bab7",
+      "mask_all_queries_equal": true,
+      "metadata_setup_seconds": 1.3836471909889951,
+      "candidates": {
+        "-inf": {
+          "vs_dense": {
+            "finite": true,
+            "max_abs": 0.015625,
+            "relative_l2": 1.983162474061828e-05,
+            "cosine": 1.0,
+            "worst_head_relative_l2": 2.5260826078010723e-05,
+            "global_queries_exact": true,
+            "window_only": {
+              "finite": true,
+              "max_abs": 0.015625,
+              "relative_l2": 2.021010914177168e-05,
+              "cosine": 1.0
+            }
+          },
+          "oracle_checks": [
+            {
+              "window": 0,
+              "heads": [
+                0,
+                11,
+                15
+              ],
+              "query_rows": 192,
+              "error": {
+                "finite": true,
+                "max_abs": 0.0192718505859375,
+                "relative_l2": 0.0017695241840556264,
+                "cosine": 0.9999992847442627
+              },
+              "oracle_density": 1.0
+            },
+            {
+              "window": 3,
+              "heads": [
+                0,
+                11,
+                15
+              ],
+              "query_rows": 176,
+              "error": {
+                "finite": true,
+                "max_abs": 0.027658462524414062,
+                "relative_l2": 0.0017440604278817773,
+                "cosine": 0.9999995231628418
+              },
+              "oracle_density": 1.0
+            },
+            {
+              "window": 6,
+              "heads": [
+                0,
+                11,
+                15
+              ],
+              "query_rows": 176,
+              "error": {
+                "finite": true,
+                "max_abs": 0.02800464630126953,
+                "relative_l2": 0.0017405424732714891,
+                "cosine": 0.9999991059303284
+              },
+              "oracle_density": 1.0
+            }
+          ],
+          "oracle_pass": true,
+          "window_block_density": 1.0,
+          "operator_error_gate": true,
+          "speedup": 0.8668318276239373
+        },
+        "0.0": {
+          "vs_dense": {
+            "finite": true,
+            "max_abs": 0.96875,
+            "relative_l2": 0.01822751574218273,
+            "cosine": 0.9998339414596558,
+            "worst_head_relative_l2": 0.0510951392352581,
+            "global_queries_exact": true,
+            "window_only": {
+              "finite": true,
+              "max_abs": 0.96875,
+              "relative_l2": 0.018575387075543404,
+              "cosine": 0.9998273849487305
+            }
+          },
+          "oracle_checks": [
+            {
+              "window": 0,
+              "heads": [
+                0,
+                9,
+                15
+              ],
+              "query_rows": 192,
+              "error": {
+                "finite": true,
+                "max_abs": 0.008884668350219727,
+                "relative_l2": 0.001688248012214899,
+                "cosine": 1.0000011920928955
+              },
+              "oracle_density": 0.7421271204948425
+            },
+            {
+              "window": 3,
+              "heads": [
+                0,
+                9,
+                15
+              ],
+              "query_rows": 176,
+              "error": {
+                "finite": true,
+                "max_abs": 0.00825810432434082,
+                "relative_l2": 0.0016963738016784191,
+                "cosine": 1.0000009536743164
+              },
+              "oracle_density": 0.6954295039176941
+            },
+            {
+              "window": 6,
+              "heads": [
+                0,
+                9,
+                15
+              ],
+              "query_rows": 176,
+              "error": {
+                "finite": true,
+                "max_abs": 0.008289813995361328,
+                "relative_l2": 0.0016766232438385487,
+                "cosine": 1.0000019073486328
+              },
+              "oracle_density": 0.8365079760551453
+            }
+          ],
+          "oracle_pass": true,
+          "window_block_density": 0.6771919154387782,
+          "operator_error_gate": true,
+          "speedup": 1.0957373550223983
+        },
+        "1.0": {
+          "vs_dense": {
+            "finite": true,
+            "max_abs": 2.09375,
+            "relative_l2": 0.06104292720556259,
+            "cosine": 0.9981362223625183,
+            "worst_head_relative_l2": 0.21694710850715637,
+            "global_queries_exact": true,
+            "window_only": {
+              "finite": true,
+              "max_abs": 2.09375,
+              "relative_l2": 0.06220792233943939,
+              "cosine": 0.9980642795562744
+            }
+          },
+          "oracle_checks": [
+            {
+              "window": 0,
+              "heads": [
+                0,
+                4,
+                15
+              ],
+              "query_rows": 192,
+              "error": {
+                "finite": true,
+                "max_abs": 0.008159637451171875,
+                "relative_l2": 0.0016762397717684507,
+                "cosine": 1.0000019073486328
+              },
+              "oracle_density": 0.48663100600242615
+            },
+            {
+              "window": 3,
+              "heads": [
+                0,
+                4,
+                15
+              ],
+              "query_rows": 176,
+              "error": {
+                "finite": true,
+                "max_abs": 0.008039474487304688,
+                "relative_l2": 0.001676741405390203,
+                "cosine": 1.0000014305114746
+              },
+              "oracle_density": 0.3821907043457031
+            },
+            {
+              "window": 6,
+              "heads": [
+                0,
+                4,
+                15
+              ],
+              "query_rows": 176,
+              "error": {
+                "finite": true,
+                "max_abs": 0.008136510848999023,
+                "relative_l2": 0.0016809845110401511,
+                "cosine": 1.0000015497207642
+              },
+              "oracle_density": 0.5904761552810669
+            }
+          ],
+          "oracle_pass": true,
+          "window_block_density": 0.42455820393148486,
+          "operator_error_gate": true,
+          "speedup": 1.422180858258734
+        }
+      },
+      "timings": {
+        "baseline": {
+          "samples_ms": [
+            138.95217895507812,
+            139.27047729492188,
+            139.35226440429688,
+            139.3882598876953,
+            139.68284606933594,
+            139.88914489746094,
+            139.87600708007812,
+            139.65638732910156,
+            140.42723083496094
+          ],
+          "median_ms": 139.65638732910156,
+          "cv": 0.0029120863792116538
+        },
+        "-inf": {
+          "samples_ms": [
+            160.8699951171875,
+            161.09169006347656,
+            160.78004455566406,
+            161.13250732421875,
+            161.03041076660156,
+            161.1112823486328,
+            161.17279052734375,
+            161.33529663085938,
+            161.1616668701172
+          ],
+          "median_ms": 161.1112823486328,
+          "cv": 0.0009722541797064083
+        },
+        "0.0": {
+          "samples_ms": [
+            126.74331665039062,
+            127.29129791259766,
+            127.35491943359375,
+            127.40785217285156,
+            127.6738052368164,
+            127.71107482910156,
+            127.50579833984375,
+            127.45425415039062,
+            127.89392852783203
+          ],
+          "median_ms": 127.45425415039062,
+          "cv": 0.002416748413504885
+        },
+        "1.0": {
+          "samples_ms": [
+            98.02179718017578,
+            98.20655822753906,
+            98.33311462402344,
+            98.1987533569336,
+            98.07674407958984,
+            98.13098907470703,
+            98.23558807373047,
+            97.6123046875,
+            98.32713317871094
+          ],
+          "median_ms": 98.1987533569336,
+          "cv": 0.0021059126497582972
+        }
+      }
+    }
+  ],
+  "hardware": "AMD Radeon AI PRO R9700",
+  "gpu_uuid": "GPU-b11d6bcf3a61a551",
+  "torch": "2.12.0+rocm10.0.0",
+  "hip": "7.15.26333",
+  "composition_sha256": "ac22c2475833ef8e9c539213c4fa6c84939f1acb93289d31ee7eea34aa5c94c7",
+  "script_sha256": "ee78e7d7d433c6b4aba146dbdbb9444a8b49e8e95b92fb2035cd3b25911a0ab6",
+  "source_sha256": {
+    "src/sol_attn_amd/reference.py": "4ebbdc436781338f9d49f7273aeed3306f150fd97cb71e07903fd838fc840bff",
+    "src/sol_attn_amd/indexed.py": "5e00986ff17f4053a843b657bc18038a20a6a83db2a71f2d2ebde57067468ccf",
+    "src/sol_attn_amd/attention.py": "25cd74e3c4e67244f3c84d4908e9fb098b6ce09e5a1953cd545ff8f6aec58c36",
+    "src/sol_attn_amd/kernels.py": "9de4c01d68cbed2a7cf508ff7240723bdcc775e4a5399c4d670c614d443ba845",
+    "src/sol_attn_amd/__init__.py": "273e65e2cde07143c3089e17c56094d34302f3f33b21bcf5e18d524425b2683b",
+    "integrations/vdn.py": "e2cd46a9cc139ea068cc10d3b7cc4484e0a7c8c4b98a8f6673106d6533a47ddb"
+  }
+}

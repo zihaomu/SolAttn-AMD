@@ -9,6 +9,8 @@
 3. **Semantic masks**: explicit allowed-key intervals and actual VDN frame,
    anchor, global and text/audio rules. Pool only valid keys; preserve query-
    dependent multiplicities. The initial unmasked API is not a window adapter.
+   The indexed-window API now pools only explicitly allowed keys and protects
+   conditioning/anchor/local blocks; the VDN adapter remains research-only.
 4. **Numerical experiments**: full covariance thresholds and separately measured
    INT8 QK, FP8/BF16 PV, or mixed-signedness integer PV. Preserve a BF16 control.
    The uint8×uint8 compiler PR does not supply uint8×int8 PV support.

@@ -17,7 +17,8 @@ def _means(x, block, dtype):
 
 @torch.no_grad()
 def sol_reference(q, k, v, *, beta=1.0, scale=None, local_blocks=1,
-                  kv_sink_tokens=0, query_sink_tokens=0, block=64):
+                  kv_sink_tokens=0, query_sink_tokens=0, block=64,
+                  protected_blocks=None, query_blocks=None):
     """FP32 mathematical oracle with explicitly BF16-rounded K/V centroids."""
     scale = q.shape[-1] ** -0.5 if scale is None else scale
     qm = _means(q, block, torch.float32)
@@ -27,11 +28,14 @@ def sol_reference(q, k, v, *, beta=1.0, scale=None, local_blocks=1,
     variance = (km.square().mean(1) - mean.square()).clamp_min(0)
     cuts = ((qm * mean[:, None]).sum(-1)
             + beta * (qm.square() * variance[:, None]).sum(-1).sqrt()) * scale
-    output = torch.empty(q.shape, dtype=torch.float32, device=q.device)
-    counts = torch.zeros(qm.shape[:3], dtype=torch.int32, device=q.device)
+    output = torch.full(q.shape, math.nan, dtype=torch.float32, device=q.device)
+    counts = torch.full(qm.shape[:3], -1, dtype=torch.int32, device=q.device)
+    # Optional diagnostic subset keeps moments over ALL allowed keys and Q
+    # means at their original block origins. Uncomputed outputs remain NaN.
+    blocks = range(qm.shape[1]) if query_blocks is None else tuple(query_blocks)
     for batch in range(q.shape[0]):
         for head in range(q.shape[2]):
-            for qb in range(qm.shape[1]):
+            for qb in blocks:
                 qr = q[batch, qb * block:(qb + 1) * block, head].float()
                 proxy = (qr @ km[batch, :, head].T).mean(0) * scale
                 selected = proxy > cuts[batch, qb, head]
@@ -41,7 +45,9 @@ def sol_reference(q, k, v, *, beta=1.0, scale=None, local_blocks=1,
                     selected[:] = False
                 for kb in range(km.shape[1]):
                     if (abs(qb - kb) <= local_blocks or kb * block < kv_sink_tokens
-                            or qb * block < query_sink_tokens):
+                            or qb * block < query_sink_tokens
+                            or (protected_blocks is not None
+                                and protected_blocks[batch, qb, kb])):
                         selected[kb] = True
                 logits, values = [], []
                 for kb in range(km.shape[1]):
